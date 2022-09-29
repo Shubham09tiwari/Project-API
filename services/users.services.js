@@ -12,7 +12,8 @@ module.exports = {
         console.log("services2", Mongoose.Types.ObjectId(data.data._id))
       const userData = await userModel.findOne({ _id:Mongoose.Types.ObjectId(data.data) });
     //   console.log("type", typeof userData)
+    const myJSON = JSON.stringify(userData);
     
-      return userData;
+      return myJSON;
     }
 }

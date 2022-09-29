@@ -14,9 +14,7 @@ async function verifyToken(req, res, next) {
           if(!data) res.send('You are not authorized 1').status(403);
           const userData = await usersServices.findUserById({data: data.data._id})
           // console.log("userData" , userData)
-          const myJSON = JSON.stringify(userData);
-          console.log("type", typeof myJSON)
-          if(!myJSON) res.send('You are not authorized 2').status(403);
+          if(!userData) res.send('You are not authorized 2').status(403);
 
           next();
         } else {

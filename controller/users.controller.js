@@ -47,9 +47,7 @@ module.exports = {
         const userData = await usersServices.findUserById({data: req.query._id})
         if(!userData) {res.send('User not found with ID').status(404)} 
         console.log("controller data", userData)
-        const myJSON = JSON.stringify(userData);
-        console.log("type2", typeof myJSON)
-        res.json(myJSON).status(200)
+        res.json(userData).status(200)
       } catch (error) {
           console.log('controller error', error)
           res.send(error)
