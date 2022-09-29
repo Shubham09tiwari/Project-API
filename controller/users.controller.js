@@ -49,7 +49,6 @@ module.exports = {
         if(!userData) {
           res.send('User not found with ID').status(404)
         } 
-        console.log("controller data", userData)
         res.json(userData).status(200)
       } catch (error) {
           console.log('controller error', error)
