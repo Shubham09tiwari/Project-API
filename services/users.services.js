@@ -8,12 +8,13 @@ module.exports = {
     },
 
     async findUserById (data) {
-        console.log("services", data)
-        console.log("services2", Mongoose.Types.ObjectId(data.data._id))
+        // console.log("services", data)
+        // console.log("services2", Mongoose.Types.ObjectId(data.data._id))
       const userData = await userModel.findOne({ _id:Mongoose.Types.ObjectId(data.data) });
-    //   console.log("type", typeof userData)
-    const myJSON = JSON.stringify(userData);
+      const userDataStr = JSON.stringify(userData);
+        // console.log("type in service", typeof myJSON)
+        // console.log("myjson",myJSON)
     
-      return myJSON;
+      return userDataStr;
     }
 }
