@@ -9,6 +9,10 @@ router.post("/signup", userReq.signUp);
 
 router.post("/login", userReq.login);
 
-router.get("/api",verifyToken, userReq.api);
+router.get("/api", verifyToken, userReq.api);
+
+router.post("/update", verifyToken, userReq.update);
+
+// router.post("/delete", verifyToken, userReq.delete);
 
 module.exports = router;
