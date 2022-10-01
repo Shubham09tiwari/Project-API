@@ -13,6 +13,8 @@ router.get("/api", verifyToken, userReq.api);
 
 router.post("/update", verifyToken, userReq.update);
 
+router.get("/data", userReq.data);
+
 // router.post("/delete", verifyToken, userReq.delete);
 
 module.exports = router;

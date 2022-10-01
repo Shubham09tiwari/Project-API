@@ -58,21 +58,40 @@ module.exports = {
       try{
         console.log("update",req.query._id)
         console.log("update", req.body)
-        const userData = await usersServices.findUserById({data: req.query._id})
-        console.log("update 2",userData)
+        var userData = await usersServices.findUserById({data: req.query._id})
+        console.log("userData",userData)
         if(!userData) {
           res.send('User not found with ID').status(404)
         } 
         // console.log("222", req.body._id)
         console.log("print db", Mongoose.Types.ObjectId(req.query._id))
+        console.log("userDataname",userData.firstname)
+
  
-        userModel.update({firstname:req.body.firstname}, function (err, result) {
-          if (err){
-              console.log(err)
-          }else{
-              console.log("Result :", result) 
-          }
-        });
+        if(req.body.firstname){
+          userData = userData.update({firstname:req.body.firstname})
+        }
+        if(req.body.lastname){
+          userData = userData.update({lastname:req.body.lastname})
+        }
+        if(req.body.contact){
+          userData = userData.update({contact:req.body.contact})
+        }
+        if(req.body.address){
+          userData = userData.update({address:req.body.address})
+        }
+
+        console.log("updatedUserData",userData)
+
+
+        //   userModel.updateOne({firstname:req.body.firstname}, function (err, result) {
+        //     if (err){
+        //         console.log(err)
+        //     }else{
+        //         console.log("Result :", result) 
+        //     }
+        //   });
+      
 
         res.send("Update Successful")
 
@@ -80,5 +99,22 @@ module.exports = {
           console.log('update error', error)
           res.send("Update Failed", error)
       }
+    },
+
+    async data(req,res,next){
+      // res.sendFile(path.join(__dirname,'data.html'))
+      // res.send("welcome, kam chl rha hai... wait kro")
+      // var options = {
+      //   root: path.join(__dirname)
+      // };
+      // var fileName = 'data.html';
+      // res.sendFile(fileName, options, function (err) {
+      //   if (err) {
+      //       next(err);
+      //   } else {
+      //       console.log('Sent:', fileName);
+      //       next();
+      //   }
+      // });
     }
 }
