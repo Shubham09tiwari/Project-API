@@ -69,8 +69,14 @@ module.exports = {
         userId = req.query._id
         userData = req.body
         
-        if(req.body.email){ delete req.body.email }
-        if(req.body.password){ delete req.body.password }
+        if(req.body.email){ 
+          delete req.body.email
+          // res.send("you can't update/change email")
+        }
+        if(req.body.password){ 
+          delete req.body.password
+          // res.send("you can't update/change password")
+        }
 
         const updatedUser = userModel.findOneAndUpdate(
           { _id: userId },
