@@ -78,6 +78,19 @@ module.exports = {
           // res.send("you can't update/change password")
         }
 
+        if (req.body.firstname==""){
+          delete req.body.firstname
+        }
+        if (req.body.lastname==""){
+          delete req.body.lastname
+        }
+        if (req.body.contact==""){
+          delete req.body.contact
+        }
+        if (req.body.address==""){
+          delete req.body.address
+        }
+
         const updatedUser = userModel.findOneAndUpdate(
           { _id: userId },
           {  $set: userData },
