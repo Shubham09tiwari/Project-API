@@ -21,7 +21,7 @@ module.exports = {
 
     async updateUser (data) {
         try{
-            console.log("data", data)
+            // console.log("data", data)
             userId = data.query._id
             userData = data.body
            

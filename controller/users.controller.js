@@ -67,7 +67,7 @@ module.exports = {
         // console.log("print db", Mongoose.Types.ObjectId(req.query._id))
         
         const updateUsers = await usersServices.updateUser({data: req})
-        console.log("updated User", updateUsers)
+        console.log("updated User Controller", updateUsers)
        
         res.send("Update Successful")
 
