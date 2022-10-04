@@ -1,5 +1,6 @@
 const Mongoose= require('mongoose');
 const userModel = require('../Models/users.models')
+const usersController = require('../controller/users.controller')
 
 module.exports = {
     async signUpUser (data) {
@@ -16,40 +17,39 @@ module.exports = {
           return userData;
         } catch(e){
             console.log("it is a fault", e)
-        }
+        }  
     },
 
-    async updateUser (data) {
+    async updateUserByid(userID, userData) {
         try{
-            // console.log("data", data)
-            userId = data.query._id
-            userData = data.body
+            console.log("userData service", userData.data)
+
+            if(!userID){return "id is required"}
+            if(!userData){return "data is required"}
            
-            if(data.body.email){ 
-                delete data.body.email
-                // res.send("you can't update/change email")
+            if(userData.data.email){ 
+                delete userData.data.email
             }
-            if(data.body.password){ 
-                delete data.body.password
-                // res.send("you can't update/change password")
+            if(userData.data.password){ 
+                delete userData.data.password
             }
     
-            if (data.body.firstname==""){
-                delete data.body.firstname
+            if (userData.data.firstname==""){
+                delete userData.data.firstname
             }
-            if (data.body.lastname==""){
-                delete data.body.lastname
+            if (userData.data.lastname==""){
+                delete userData.data.lastname
             }
-            if (data.body.contact==""){
-                delete data.body.contact
+            if (userData.data.contact==""){
+                delete userData.data.contact
             }
-            if (data.body.address==""){
-                delete data.body.address
+            if (userData.data.address==""){
+                delete userData.data.address
             }
     
             const updatedUser = userModel.findOneAndUpdate(
-                { _id: userId },
-                {  $set: userData },
+                { _id: userID },
+                {  $set: userData.data },
                 { new: true }
             ).exec();
             console.log("updated User services", updatedUser)
