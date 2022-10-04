@@ -22,7 +22,6 @@ module.exports = {
 
     async updateUserByid(userID, userData) {
         try{
-            console.log("userData service", userData.data)
 
             if(!userID){return "id is required"}
             if(!userData){return "data is required"}
@@ -52,8 +51,9 @@ module.exports = {
                 {  $set: userData.data },
                 { new: true }
             ).exec();
-            console.log("updated User services", updatedUser)
+
             return updatedUser;
+            
         }catch(e){
             console.log("it is a fault", e)
         }
