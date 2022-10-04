@@ -17,5 +17,45 @@ module.exports = {
         } catch(e){
             console.log("it is a fault", e)
         }
+    },
+
+    async updateUser (data) {
+        try{
+            console.log("data", data)
+            userId = data.query._id
+            userData = data.body
+           
+            if(data.body.email){ 
+                delete data.body.email
+                // res.send("you can't update/change email")
+            }
+            if(data.body.password){ 
+                delete data.body.password
+                // res.send("you can't update/change password")
+            }
+    
+            if (data.body.firstname==""){
+                delete data.body.firstname
+            }
+            if (data.body.lastname==""){
+                delete data.body.lastname
+            }
+            if (data.body.contact==""){
+                delete data.body.contact
+            }
+            if (data.body.address==""){
+                delete data.body.address
+            }
+    
+            const updatedUser = userModel.findOneAndUpdate(
+                { _id: userId },
+                {  $set: userData },
+                { new: true }
+            ).exec();
+            console.log("updated User services", updatedUser)
+            return updatedUser;
+        }catch(e){
+            console.log("it is a fault", e)
+        }
     }
 }

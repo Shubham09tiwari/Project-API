@@ -11,10 +11,10 @@ router.post("/login", userReq.login);
 
 router.get("/api", verifyToken, userReq.api);
 
-router.post("/update", verifyToken, userReq.update);
+router.post("/updateUser", verifyToken, userReq.updateUser);
+
+router.post("/deleteUser", verifyToken, userReq.deleteUser);
 
 router.get("/data", userReq.data);
-
-// router.post("/delete", verifyToken, userReq.delete);
 
 module.exports = router;

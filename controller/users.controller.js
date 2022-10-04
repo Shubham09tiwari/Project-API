@@ -55,53 +55,40 @@ module.exports = {
       }
     },
 
-    async update(req, res) {
+    async updateUser(req, res) {
       try{
         // console.log("update",req.query._id)
         // console.log("update", req.body)
-        var userData = await usersServices.findUserById({data: req.query._id})
+        const userData = await usersServices.findUserById({data: req.query._id})
         // console.log("userData",userData)
         if(!userData) {
           res.send('User not found with ID').status(404)
         } 
-        // console.log("print db", Mongoose.Types.ObjectId(req.query._id))        
+        // console.log("print db", Mongoose.Types.ObjectId(req.query._id))
         
-        userId = req.query._id
-        userData = req.body
-        
-        if(req.body.email){ 
-          delete req.body.email
-          // res.send("you can't update/change email")
-        }
-        if(req.body.password){ 
-          delete req.body.password
-          // res.send("you can't update/change password")
-        }
-
-        if (req.body.firstname==""){
-          delete req.body.firstname
-        }
-        if (req.body.lastname==""){
-          delete req.body.lastname
-        }
-        if (req.body.contact==""){
-          delete req.body.contact
-        }
-        if (req.body.address==""){
-          delete req.body.address
-        }
-
-        const updatedUser = userModel.findOneAndUpdate(
-          { _id: userId },
-          {  $set: userData },
-          { new: true }
-        ).exec();
+        const updateUsers = await usersServices.updateUser({data: req})
+        console.log("updated User", updateUsers)
        
         res.send("Update Successful")
 
       } catch (error) {
           console.log('update error', error)
           res.send("Update Failed", error)
+      }
+    },
+
+    async deleteUser(req, res){
+      try{
+        const userData = await usersServices.findUserById({data: req.query._id})
+        console.log("userData",userData)
+        if(!userData) {
+          res.send('User not found with ID').status(404)
+        }
+        // res.send("hii")
+
+      } catch (error) {
+          console.log('controller error', error)
+          res.send(error)
       }
     },
 
