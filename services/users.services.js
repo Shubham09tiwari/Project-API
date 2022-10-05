@@ -20,31 +20,24 @@ module.exports = {
         }  
     },
 
+    async findUserEmail (email) {
+        const useremail = await userModel.findOne(email);
+        return useremail
+    },
+
     async updateUserByid(userID, userData) {
         try{
 
             if(!userID){return "id is required"}
             if(!userData){return "data is required"}
            
-            if(userData.data.email){ 
-                delete userData.data.email
-            }
-            if(userData.data.password){ 
-                delete userData.data.password
-            }
+            if(userData.data.email){delete userData.data.email}
+            if(userData.data.password){delete userData.data.password}
     
-            if (userData.data.firstname==""){
-                delete userData.data.firstname
-            }
-            if (userData.data.lastname==""){
-                delete userData.data.lastname
-            }
-            if (userData.data.contact==""){
-                delete userData.data.contact
-            }
-            if (userData.data.address==""){
-                delete userData.data.address
-            }
+            if (userData.data.firstname==""){delete userData.data.firstname}
+            if (userData.data.lastname==""){delete userData.data.lastname}
+            if (userData.data.contact==""){delete userData.data.contact}
+            if (userData.data.address==""){delete userData.data.address}
     
             const updatedUser = userModel.findOneAndUpdate(
                 { _id: userID },
@@ -53,7 +46,7 @@ module.exports = {
             ).exec();
 
             return updatedUser;
-            
+
         }catch(e){
             console.log("it is a fault", e)
         }

@@ -23,7 +23,7 @@ module.exports = {
     async login(req, res) {
 
       const body = req.body;
-      const user = await userModel.findOne({ email: body.email });
+      const user = await usersServices.findUserEmail({ email: body.email });
       if (user) {
         // check user password with hashed password stored in the database
         const validPassword = await bcrypt.compare(body.password, user.password);
@@ -39,6 +39,26 @@ module.exports = {
       }
 
     },
+    
+    // async login(req, res) {
+
+    //   const body = req.body;
+    //   const user = await userModel.findOne({ email: body.email });
+    //   if (user) {
+    //     // check user password with hashed password stored in the database
+    //     const validPassword = await bcrypt.compare(body.password, user.password);
+    //     if (validPassword) {
+    //       let token = jwt.sign({ data: user }, 'shhhhh');
+
+    //       res.status(200).json({token:token, message: "Valid password" });
+    //     } else {
+    //       res.status(400).json({ error: "Invalid Password" });
+    //     }
+    //   } else {
+    //     res.status(401).json({ error: "User does not exist" });
+    //   }
+
+    // },
 
     async api(req,res) {
       try{
