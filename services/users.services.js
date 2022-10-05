@@ -62,7 +62,6 @@ module.exports = {
                     console.log(err)
                 }
             });
-            return deleteUser;
         } catch(e){
             console.log("it is a fault", e)
         }

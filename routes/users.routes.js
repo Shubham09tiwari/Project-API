@@ -15,6 +15,8 @@ router.post("/updateUser", verifyToken, userReq.updateUser);
 
 router.delete("/deleteUser", verifyToken, userReq.deleteUser);
 
+router.post("/getUsers", userReq.getUsers);
+
 router.get("/index", userReq.index);
 
 module.exports = router;

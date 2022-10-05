@@ -86,12 +86,21 @@ module.exports = {
         }
 
         const updateUsers = await usersServices.deleteUserByid(req.query._id)
-        res.send("Accout Deleted Successfully")
+        res.send("Account Deleted Successfully")
+        console.log("Account Deleted Successfully")
 
       } catch (error) {
           console.log('controller error', error)
           res.send(error)
       }
+    },
+
+    async getUsers(req, res) {
+        // const getUsersDetails = userModel.runCommand( { listCollections: 1.0, authorizedCollections: true, nameOnly: true }, function(err, collections){
+        const getAllUsers = userModel.listCollections().toArray(function (err, collectionInfos){
+          res.send(collectionInfos)
+          console.log("all users",collectionInfos)
+        });
     },
 
     async index(req,res,next){
