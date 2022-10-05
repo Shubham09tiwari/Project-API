@@ -50,5 +50,21 @@ module.exports = {
         }catch(e){
             console.log("it is a fault", e)
         }
+    },
+
+    async deleteUserByid(userID) {
+        try {
+            const deleteUser = userModel.findByIdAndRemove({_id: userID }, (err) => {
+                if (!err) {
+                    console.log("No Error")
+                }
+                else {
+                    console.log(err)
+                }
+            });
+            return deleteUser;
+        } catch(e){
+            console.log("it is a fault", e)
+        }
     }
 }

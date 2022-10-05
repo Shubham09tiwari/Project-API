@@ -13,7 +13,7 @@ router.get("/api", verifyToken, userReq.api);
 
 router.post("/updateUser", verifyToken, userReq.updateUser);
 
-router.post("/deleteUser", verifyToken, userReq.deleteUser);
+router.delete("/deleteUser", verifyToken, userReq.deleteUser);
 
 router.get("/data", userReq.data);
 
