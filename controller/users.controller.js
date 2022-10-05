@@ -94,13 +94,13 @@ module.exports = {
       }
     },
 
-    async data(req,res,next){
-      // res.sendFile(path.join(__dirname,'data.html'))
+    async index(req,res,next){
+      // res.sendFile(path.join(__dirname,'index.html'))
       res.send("welcome, kam chl rha hai... wait kro")
       // var options = {
       //   root: path.join(__dirname)
       // };
-      // var fileName = 'data.html';
+      // var fileName = 'index.html';
       // res.sendFile(fileName, options, function (err) {
       //   if (err) {
       //       next(err);
