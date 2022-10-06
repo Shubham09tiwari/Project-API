@@ -96,13 +96,25 @@ module.exports = {
     },
 
     async getUsers(req, res) {
-        // const getUsersDetails = userModel.runCommand( { listCollections: 1.0, authorizedCollections: true, nameOnly: true }, function(err, collections){
-        const getAllUsers = userModel.listCollections().toArray(function (err, collectionInfos){
-          res.send(collectionInfos)
-          console.log("all users",collectionInfos)
-        });
+      const getAllUsers = () => {
+        userModel.listCollections()
+          .then((snapshot) => {
+            snapshot.forEach((snaps) => {
+              console.log(snaps["_queryOptions"].collectionId);
+            });
+          })
+          .catch((error) => console.error(error));
+      };
+      getAllUsers();
     },
-
+    // async getUsers(req, res) {
+    //     // const getUsersDetails = userModel.runCommand( { listCollections: 1.0, authorizedCollections: true, nameOnly: true }, function(err, collections){
+    //     const getAllUsers = userModel.listCollections().toArray(function (err, collectionInfos){
+    //       res.send(collectionInfos)
+    //       console.log("all users",collectionInfos)
+    //     });
+    // },
+    
     async index(req,res,next){
       // res.sendFile(path.join(__dirname,'index.html'))
       res.send("welcome, kam chl rha hai... wait kro")
