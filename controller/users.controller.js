@@ -104,10 +104,7 @@ module.exports = {
 
     async index (req, res) {
  
-      var data = {name:'Royal',
-      hobbies:['playing VollyBall', 'playing chess', 'Music']}
- 
-      res.render('index', {data:data});
+      res.render('index');
        
-      }
+    }
 }
