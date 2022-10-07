@@ -12,6 +12,8 @@ connect(dbConnection.url)
 
 app.use(router)
 
+app.set('view engine', 'ejs');
+
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)
 })

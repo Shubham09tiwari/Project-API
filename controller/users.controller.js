@@ -96,39 +96,18 @@ module.exports = {
     },
 
     async getUsers(req, res) {
-      const getAllUsers = function getAllUsers() {
-        userModel.listCollections().then(function (snapshot) {
-          snapshot.forEach(function (snaps) {
-            console.log(snaps["_queryOptions"].collectionId);
-          });
-        }).catch(function (error) {
-          return console.error(error);
-        });
-      };
-      getAllUsers();
+      const users = await userModel.find({});
+      console.log("Ho Gya BHAI")
+      // res.send(users)
+      res.status(200).json({message: "All Users", users});
     },
-    // async getUsers(req, res) {
-    //     // const getUsersDetails = userModel.runCommand( { listCollections: 1.0, authorizedCollections: true, nameOnly: true }, function(err, collections){
-    //     const getAllUsers = userModel.listCollections().toArray(function (err, collectionInfos){
-    //       res.send(collectionInfos)
-    //       console.log("all users",collectionInfos)
-    //     });
-    // },
-    
-    async index(req,res,next){
-      // res.sendFile(path.join(__dirname,'index.html'))
-      res.send("welcome, kam chl rha hai... wait kro")
-      // var options = {
-      //   root: path.join(__dirname)
-      // };
-      // var fileName = 'index.html';
-      // res.sendFile(fileName, options, function (err) {
-      //   if (err) {
-      //       next(err);
-      //   } else {
-      //       console.log('Sent:', fileName);
-      //       next();
-      //   }
-      // });
-    }
+
+    async index (req, res) {
+ 
+      var data = {name:'Royal',
+      hobbies:['playing VollyBall', 'playing chess', 'Music']}
+ 
+      res.render('index', {data:data});
+       
+      }
 }
