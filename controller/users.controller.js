@@ -96,14 +96,14 @@ module.exports = {
     },
 
     async getUsers(req, res) {
-      const getAllUsers = () => {
-        userModel.listCollections()
-          .then((snapshot) => {
-            snapshot.forEach((snaps) => {
-              console.log(snaps["_queryOptions"].collectionId);
-            });
-          })
-          .catch((error) => console.error(error));
+      const getAllUsers = function getAllUsers() {
+        userModel.listCollections().then(function (snapshot) {
+          snapshot.forEach(function (snaps) {
+            console.log(snaps["_queryOptions"].collectionId);
+          });
+        }).catch(function (error) {
+          return console.error(error);
+        });
       };
       getAllUsers();
     },
